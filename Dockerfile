@@ -1,11 +1,12 @@
 FROM openjdk11
- 
-RUN apt-get update && \
-    apt-get install -y jenkins\
-    LABEL maintainer=”any”
-LABEL version=”1.0”
-LABEL description=”devops.jar”
- 
-EXPOSE 80/tcp
- 
-CMD [“devops.jar”, “-g”, ‘daemon off;’]
+
+WORKDIR /usr/src/app
+
+COPY package*.json ./
+
+RUN jenkins install
+
+COPY . .
+
+EXPOSE 8080
+CMD [ "openjdk11", "devops.jar" ]
