@@ -1,12 +1,6 @@
-FROM openjdk11
-
+FROM openjdk-11
 WORKDIR /usr/src/app
-
-COPY package*.json ./
-
-RUN jenkins install
-
-COPY . .
-
+COPY mynewapp/* /
+RUN npm install
 EXPOSE 8080
-CMD [ "openjdk11", "devops.jar" ]
+CMD [ "npm","start" ]
