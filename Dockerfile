@@ -1,6 +1,4 @@
 FROM openjdk-11
-WORKDIR /usr/src/app
-COPY mynewapp/* /
-RUN npm install
+COPY target/*.jar /
 EXPOSE 8080
-CMD [ "npm","start" ]
+ENTRYPOINT ["java","-jar","mynewapp-1.0-SNAPSHOT.jar"]
